@@ -1,0 +1,25 @@
+{:paths     ["src"]
+ :deps      {org.clojure/tools.nrepl {:mvn/version "0.2.13"}
+             ring/ring               {:mvn/version "1.9.3"}
+             metosin/reitit          {:mvn/version "0.5.15"}}
+
+
+ :aliases   {:socket   {:jvm-opts ["-Dclojure.server.repl={:port,50505,:accept,clojure.core.server/repl}"]}
+             :aot      {:extra-paths ["classes"]
+                        :main-opts   ["-e" "(compile,'greenlabs)"]}
+             :uberjar  {:extra-deps
+                                   {luchiniatwork/cambada {:mvn/version "1.0.0"}}
+                        :main-opts ["-m" "cambada.uberjar"
+                                    "-m" "WhatIsClojure/hello"]}
+             :add-libs {:extra-deps {org.clojure/tools.deps.alpha ; add-lib3 branch
+                                     {:git/url "https://github.com/clojure/tools.deps.alpha"
+                                      :sha     "83a477b305839c697666401508c395cfed29506a"}}}
+             :reveal   {:extra-paths ["src"]
+                        :extra-deps  {vlaaad/reveal {:mvn/version "RELEASE"}}
+                        :jvm-opts    ["-Dvlaaad.reveal.prefs={:font-size,24,:port,50505}"]
+                        :main-opts   ["-m" "vlaaad.reveal" "repl"]}}
+ :mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
+             "clojars" {:url "https://repo.clojars.org/"}}}
+
+
+
